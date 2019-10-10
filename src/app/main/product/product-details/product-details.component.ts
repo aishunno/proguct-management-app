@@ -24,9 +24,6 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   getProductDetails(id) {
-    this.productService.getResourceById(id).subscribe(res => {
-      this.product = res;
-      console.log(res);
-    });
+    this.productService.getResourceById(id).subscribe(res => this.product = res);
   }
 }

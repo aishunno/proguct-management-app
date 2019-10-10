@@ -1,0 +1,11 @@
+<div style="max-width: 80%; margin: 10px auto" fxLayout="column" fxFlex="true" class="product-list">
+
+  <app-custom-data-table
+    [cols]="cols"
+    [data]="data"
+    tableHeader="Product List"
+    [paginator]="true"
+    [rows]="10"
+    (addNewDataButtonClicked)="openDialog()"
+  ></app-custom-data-table>
+</div>

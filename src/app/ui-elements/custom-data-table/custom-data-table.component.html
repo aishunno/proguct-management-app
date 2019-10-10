@@ -1,1 +1,25 @@
-<p>custom-data-table works!</p>
+<div class="custom-data-table">
+  <div class="table-header">
+    <h3>{{ tableHeader || 'Table Header' }}</h3>
+  </div>
+  <div fxlayout="row" fxLayoutAlign="space-between center">
+    <mat-form-field fxFlex="60">
+      <input matInput placeholder="Filter">
+    </mat-form-field>
+    <button (click)="onAddNewButtonClick()" fxFlex="20" mat-raised-button color="primary">Add New Product</button>
+  </div>
+  <div fxLayout="column" class="mat-elevation-z8">
+    <table>
+      <thead>
+      <tr>
+        <th *ngFor="let col of cols">{{ col.header }}</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let rowData of data">
+        <td *ngFor="let col of cols">{{ rowData[col.field] }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

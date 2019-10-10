@@ -13,11 +13,16 @@
       <thead>
       <tr>
         <th *ngFor="let col of cols">{{ col.header }}</th>
+        <th>Actions</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let rowData of data">
         <td *ngFor="let col of cols">{{ rowData[col.field] }}</td>
+        <td>
+          <button mat-button mat-raised-button color="primary">Edit</button>
+          <button (click)="onDeleteButtonClick(rowData)" mat-button mat-raised-button color="accent">Delete</button>
+        </td>
       </tr>
       </tbody>
     </table>

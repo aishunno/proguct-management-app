@@ -53,4 +53,10 @@ export class ProductListComponent implements OnInit {
     });
 
   }
+
+  deleteProduct(data) {
+    this.productService.deleteResource(data.id).subscribe(res => {
+      this.data = this.data.filter(product => product.id !== data.id);
+    });
+  }
 }

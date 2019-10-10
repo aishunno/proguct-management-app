@@ -11,10 +11,13 @@ export class CustomDataTableComponent implements OnInit {
   @Input() tableHeader: string;
   @Input() rows: number;
   @Input() paginator: boolean;
+  @Input() showActionButtons: boolean;
 
   @Output() addNewDataButtonClicked = new EventEmitter();
+  @Output() deleteDataButtonClicked = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
 
@@ -22,5 +25,9 @@ export class CustomDataTableComponent implements OnInit {
 
   onAddNewButtonClick() {
     this.addNewDataButtonClicked.emit(null);
+  }
+
+  onDeleteButtonClick(rowData) {
+    this.deleteDataButtonClicked.emit(rowData);
   }
 }

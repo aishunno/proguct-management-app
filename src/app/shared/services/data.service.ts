@@ -21,4 +21,8 @@ export class DataService {
   createResource(resource): Observable<any> {
     return this.http.post(this.url, resource);
   }
+
+  deleteResource(id): Observable<any> {
+    return this.http.delete(`${this.url}/${id}`);
+  }
 }

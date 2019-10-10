@@ -1,4 +1,4 @@
-<div style="max-width: 80%; margin: 10px auto" fxLayout="column" fxFlex="true" class="product-list">
+<div style="max-width: 90%; margin: 10px auto" fxLayout="column" fxFlex="true" class="product-list">
 
   <app-custom-data-table
     [cols]="cols"
@@ -7,5 +7,6 @@
     [paginator]="true"
     [rows]="10"
     (addNewDataButtonClicked)="openDialog()"
+    (deleteDataButtonClicked)="deleteProduct($event)"
   ></app-custom-data-table>
 </div>

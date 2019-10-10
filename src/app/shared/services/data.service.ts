@@ -25,4 +25,8 @@ export class DataService {
   deleteResource(id): Observable<any> {
     return this.http.delete(`${this.url}/${id}`);
   }
+
+  getResourceById(id): Observable<any> {
+    return this.http.get(`${this.url}/${id}`);
+  }
 }

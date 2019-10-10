@@ -15,6 +15,7 @@ export class CustomDataTableComponent implements OnInit {
 
   @Output() addNewDataButtonClicked = new EventEmitter();
   @Output() deleteDataButtonClicked = new EventEmitter();
+  @Output() rowClicked = new EventEmitter();
 
   constructor() {
   }
@@ -29,5 +30,9 @@ export class CustomDataTableComponent implements OnInit {
 
   onDeleteButtonClick(rowData) {
     this.deleteDataButtonClicked.emit(rowData);
+  }
+
+  onRowSelection(rowData) {
+    this.rowClicked.emit(rowData);
   }
 }

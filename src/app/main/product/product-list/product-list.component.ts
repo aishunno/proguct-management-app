@@ -1,19 +1,25 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {MatDialog, MatDialogConfig, MatPaginator, MatTableDataSource} from '@angular/material';
 import {ProductService} from '../services/product.service';
 import {DialogComponent} from './dialog/dialog.component';
+import {Router, Routes} from '@angular/router';
+import {Subject} from 'rxjs';
+import {takeUntil} from 'rxjs/operators';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit, OnDestroy {
   cols: any[];
   data: any[];
 
+  private unsubscribeAll: Subject<any> = new Subject<any>();
+
   constructor(
     public dialog: MatDialog,
+    private router: Router,
     private productService: ProductService) {
   }
 
@@ -30,7 +36,9 @@ export class ProductListComponent implements OnInit {
   }
 
   getProducts() {
-    this.productService.getResources().subscribe(res => {
+    this.productService.getResources()
+      .pipe(takeUntil(this.unsubscribeAll))
+      .subscribe(res => {
       this.data = res;
     });
   }
@@ -58,5 +66,14 @@ export class ProductListComponent implements OnInit {
     this.productService.deleteResource(data.id).subscribe(res => {
       this.data = this.data.filter(product => product.id !== data.id);
     });
+  }
+
+  onRowClicked(rowData) {
+    this.router.navigate([`product/${rowData.id}`]);
+  }
+
+  ngOnDestroy() {
+    this.unsubscribeAll.next();
+    this.unsubscribeAll.complete();
   }
 }

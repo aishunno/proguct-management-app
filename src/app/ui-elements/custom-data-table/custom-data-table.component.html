@@ -17,7 +17,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr *ngFor="let rowData of data">
+      <tr (click)="onRowSelection(rowData)" *ngFor="let rowData of data">
         <td *ngFor="let col of cols">{{ rowData[col.field] }}</td>
         <td>
           <button mat-button mat-raised-button color="primary">Edit</button>

@@ -11,6 +11,11 @@ import {MatSidenavModule} from '@angular/material';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/product',
+    pathMatch: 'full',
+  },
+  {
     path: 'product',
     loadChildren: './main/product/product.module#ProductModule',
   },

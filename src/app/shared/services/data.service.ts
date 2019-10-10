@@ -14,8 +14,8 @@ export class DataService {
     this.url = `${this.baseUrl}/${customUrl}`;
   }
 
-  getResources(): Observable<any> {
-    return this.http.get(this.url);
+  getResources(pageNumber?: number): Observable<any> {
+    return this.http.get(`${this.url}?page=${pageNumber}`);
   }
 
   createResource(resource): Observable<any> {

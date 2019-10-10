@@ -10,4 +10,14 @@
     (deleteDataButtonClicked)="deleteProduct($event)"
     (rowClicked)="onRowClicked($event)"
   ></app-custom-data-table>
+  <br>
+  <div class="pagination">
+    <a href="#">&laquo;</a>
+    <a
+      [ngClass]="{'active': this.currentPage === page}"
+      style="cursor: pointer"
+      *ngFor="let page of paginationRange"
+      (click)="getNextPage(page)">{{ page }}</a>
+    <a href="#">&raquo;</a>
+  </div>
 </div>
